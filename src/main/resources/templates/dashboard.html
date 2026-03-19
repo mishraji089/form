@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --card-radius: 16px;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
+            --shadow-hover: 0 8px 24px rgba(0,0,0,0.16);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f4f6f9 0%, #e9ecef 100%);
+            color: #2c3e50;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            color: #1a202c;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(90deg, #4f46e5, #7c3aed);
+            color: white;
+            border: none;
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 4px 16px rgba(79, 70, 229, 0.3);
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+        }
+        .back-btn svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+        }
+        .back-btn:hover svg {
+            transform: translateX(-2px);
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: var(--card-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 4px solid transparent;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card.users { border-top-color: #3498db; }
+        .card.male    { border-top-color: #2ecc71; }
+        .card.female  { border-top-color: #e74c3c; }
+        .card.state   { border-top-color: #9b59b6; }
+        .card.avg     { border-top-color: #f39c12; }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        .card-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a202c;
+        }
+
+        .card.users .card-icon { color: #3498db; }
+        .card.male .card-icon  { color: #2ecc71; }
+        .card.female .card-icon{ color: #e74c3c; }
+        .card.state .card-icon { color: #9b59b6; }
+        .card.avg .card-icon   { color: #f39c12; }
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+    <h2>Dashboard</h2>
+
+    <a href="/back" class="back-btn">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M15 19l-7-7 7-7"/>
+        </svg>
+        Back to Form
+    </a>
+    
+    
+
+    <div class="card-grid">
+
+        <div class="card users">
+            <div class="card-icon">👥</div>
+            <h3 class="card-title">Total Users</h3>
+            <p class="card-value" th:text="${dashboard.totalUsers}"></p>
+        </div>
+
+        <div class="card male">
+            <div class="card-icon">👨</div>
+            <h3 class="card-title">Male Users</h3>
+            <p class="card-value" th:text="${dashboard.maleCount}"></p>
+        </div>
+
+        <div class="card female">
+            <div class="card-icon">👩</div>
+            <h3 class="card-title">Female Users</h3>
+            <p class="card-value" th:text="${dashboard.femaleCount}"></p>
+        </div>
+
+        <div class="card state">
+            <div class="card-icon">📍</div>
+            <h3 class="card-title">States Covered</h3>
+            <p class="card-value" th:text="${dashboard.stateCount}"></p>
+        </div>
+
+        <div class="card avg">
+            <div class="card-icon">🎂</div>
+            <h3 class="card-title">Average Age</h3>
+            <p class="card-value" th:text="${dashboard.averageAge}"></p>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

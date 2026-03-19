@@ -1,9 +1,12 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.DashboardDTO;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 @Service
@@ -59,9 +62,42 @@ public class UserService {
         return userRepository.existsByEmail(email);
     }
     
-    
-    
+    public DashboardDTO getDashboardData() {
+
+        List<User> users = userRepository.findAll();
+
+        DashboardDTO dto = new DashboardDTO();
+
+        dto.setTotalUsers(users.size());
+
+        dto.setMaleCount(users.stream()
+                .filter(u -> "Male".equalsIgnoreCase(u.getGender()))
+                .count());
+
+        dto.setFemaleCount(users.stream()
+                .filter(u -> "Female".equalsIgnoreCase(u.getGender()))
+                .count());
+        
+        
+        dto.setStateCount(users.stream()
+        		.map(u->u.getState().getStateNameEnglish())
+        		.distinct()
+        		.count());
+        
+        dto.setAverageAge(users.stream()
+        	    .mapToInt(u -> {
+        	        if (u.getDob() == null || u.getDob().isEmpty()) {
+        	            return 0;
+        	        }
+        	        LocalDate dob = LocalDate.parse(u.getDob());
+        	        return Period.between(dob, LocalDate.now()).getYears();
+        	    })
+        	    .average()
+        	    .orElse(0));
+        
+        
       	
-    	
-    	
+    	return dto;
+    }
+    
     }

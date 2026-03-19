@@ -36,6 +36,38 @@
         .btn-glow { 
             box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.4);
         }
+        .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(90deg, #4338ca, #5850ec);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(67, 56, 202, 0.3);
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(67, 56, 202, 0.4);
+}
+
+.back-btn svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.back-btn:hover svg {
+    transform: translateX(-2px);
+}
+
     </style>
 </head>
 
@@ -65,33 +97,51 @@
                 </button>
             </div>
         </div>
-        <a href="/reports"
-       class="group relative bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-2xl text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center gap-3 transform hover:-translate-y-1">
-        <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6m4 6V7m4 10v-4M5 21h14"/>
-        </svg>
-        Reports
-    </a>
-        
-        <div class="flex items-center gap-3 flex-wrap">
-            <a href="/users-page" class="flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white px-6 py-3 rounded-2xl text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-200 backdrop-blur-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5V4H2v16h5m10 0v-4a4 4 0 10-8 0v4m8 0H9"/>
-                </svg>
-                Show Users
-            </a>
-            
-            <form action="/logout" method="post" class="inline">
-                <button type="submit" class="flex items-center gap-2 bg-gradient-to-r from-rose-500 to-red-600 hover:from-rose-600 hover:to-red-700 text-white px-6 py-3 rounded-2xl text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-200">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+
+        <div class="flex items-center gap-4">
+            <!-- Dropdown Menu Button -->
+            <div class="relative group">
+                <button class="group relative bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-6 py-3.5 rounded-2xl text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-200 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
-                    Logout
+                    Menu
                 </button>
-            </form>
+
+                <!-- Dropdown Content -->
+                <div class="absolute top-full mt-2 right-0 w-64 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <a href="/dashboard" class="flex items-center gap-3 px-5 py-3 hover:bg-gray-50 text-gray-800 hover:text-indigo-600 transition-colors">
+                        <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                        </svg>
+                        View Dashboard
+                    </a>
+                    <a href="/reports" class="flex items-center gap-3 px-5 py-3 hover:bg-gray-50 text-gray-800 hover:text-purple-600 transition-colors">
+                        <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6m4 6V7m4 10v-4M5 21h14"/>
+                        </svg>
+                        Reports
+                    </a>
+                    <a href="/users-page" class="flex items-center gap-3 px-5 py-3 hover:bg-gray-50 text-gray-800 hover:text-indigo-600 transition-colors">
+                        <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5V4H2v16h5m10 0v-4a4 4 0 10-8 0v4m8 0H9"/>
+                        </svg>
+                        Show Users
+                    </a>
+                    <form action="/logout" method="post" class="block">
+                        <button type="submit" class="w-full flex items-center gap-3 px-5 py-3 hover:bg-rose-50 text-gray-800 hover:text-rose-600 transition-colors">
+                            <svg class="w-5 h-5 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                            </svg>
+                            Logout
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </nav>
+
 
 <div class="flex justify-center items-center min-h-[calc(100vh-120px)] px-4 py-12">
     <div class="glass p-10 rounded-3xl shadow-2xl w-full max-w-lg border-0 relative overflow-hidden bg-white/60 backdrop-blur-xl">

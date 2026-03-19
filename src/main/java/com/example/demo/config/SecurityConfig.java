@@ -24,7 +24,7 @@ http
 .anyRequest().authenticated()
 )
 .formLogin(form -> form
-.defaultSuccessUrl("/form", true)
+.defaultSuccessUrl("/dashboard", true)
 .permitAll()
 )
 .logout(logout -> logout.permitAll());
